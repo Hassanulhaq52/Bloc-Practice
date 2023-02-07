@@ -1,14 +1,24 @@
-import 'package:bloc/bloc.dart';
-part 'counter_events.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 part 'counter_state.dart';
+part 'counter_events.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState.initial()) {
     on<OnIncrementCounter>((event, emit) {
-      emit(state.copyWith(count: state.count + 1));
+      emit(state.copyWith(state.count + 2));
     });
+
     on<OnDecrementCounter>((event, emit) {
-      emit(state.copyWith(count: state.count - 1));
+      emit(state.copyWith(state.count - 2));
+    });
+
+    on<OnMultiplicationCounter>((event, emit) {
+      emit(state.copyWith(state.count * 2));
+    });
+
+    on<OnDivisionCounter>((event, emit) {
+      emit(state.copyWith(state.count / 2));
     });
   }
 }
