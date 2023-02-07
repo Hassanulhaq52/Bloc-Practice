@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  TextEditingController textController = TextEditingController();
+  TextEditingController text1 = TextEditingController();
+  TextEditingController text2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +22,45 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        context.read<CounterBloc>().add(OnIncrementCounter());
-                      },
-                      child: const Text('+'),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
                         context
                             .read<CounterBloc>()
-                            .add(OnMultiplicationCounter());
+                            .add(OnMultiplicationCounter(
+
+                            num1: int.parse(text1.text),
+                            num2: int.parse(text2.text)
+
+                        ));
                       },
                       child: const Text('*'),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
-                    Text('${state.count}'),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<CounterBloc>().add(OnIncrementCounter(
+                            num1: int.parse(text1.text),
+                            num2: int.parse(text2.text)));
+                      },
+                      child: const Text('+'),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '${state.count}',
+                    ),
                     const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<CounterBloc>().add(OnDecrementCounter());
+                        context.read<CounterBloc>().add(OnDecrementCounter(
+
+                            num1: int.parse(text1.text),
+                            num2: int.parse(text2.text)
+
+                        ));
                       },
                       child: const Text('-'),
                     ),
@@ -54,7 +69,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<CounterBloc>().add(OnDivisionCounter());
+                        context.read<CounterBloc>().add(OnDivisionCounter(
+
+                            num1: int.parse(text1.text),
+                            num2: int.parse(text2.text)
+
+                        ));
                       },
                       child: const Text('/'),
                     ),
@@ -64,31 +84,61 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 25,
+                    bottom: 5,
+                  ),
                   child: TextField(
-                    // controller: textController,
-                    onChanged: (value) {
-                      context
-                          .read<CounterBloc>()
-                          .add(OnTextChange(text: value));
-                    },
+                    keyboardType: TextInputType.number,
+                    // onChanged: (number) {
+                    //   context.read<CounterBloc>().add(OnChangeText1(num1: number ));
+                    // },
+                    controller: text1,
                     decoration: InputDecoration(
+                      hintText: 'Enter Number 1',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                   ),
                 ),
-                Text(
-                  state.text,
-                  style: const TextStyle(color: Colors.black, fontSize: 26),
-                ),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     context.read<CounterBloc>().add(OnTextChange(text: textController.text));
-                //   },
-                //   child: const Text('Update'),
+                // Text(
+                //   '${state.num1}',
+                //   style: const TextStyle(
+                //     color: Colors.black,
+                //     fontSize: 25,
+                //   ),
                 // ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 25,
+                    bottom: 5,
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    // onChanged: (value) {
+                    //   context.read<CounterBloc>().add(OnChangeText2(num2: value));
+                    // },
+                    controller: text2,
+                    decoration: InputDecoration(
+                      hintText: 'Enter Number 2',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                ),
+                // Text(
+                //   '${state.num2}',
+                //   style: const TextStyle(
+                //     color: Colors.black,
+                //     fontSize: 25,
+                //   ),
+                // )
               ],
             ),
           ),
