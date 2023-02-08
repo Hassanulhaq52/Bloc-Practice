@@ -18,3 +18,5 @@ class OnChangePassword extends AuthenticationEvent {
 
   final String password;
 }
+
+class OnAddButtonPressed extends AuthenticationEvent {}

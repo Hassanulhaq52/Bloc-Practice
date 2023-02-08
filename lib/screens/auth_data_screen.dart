@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationDataScreen extends StatelessWidget {
-  AuthenticationDataScreen({Key? key}) : super(key: key);
+  const AuthenticationDataScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
+      final authBloc = context.read<AuthenticationBloc>();
       return Scaffold(
         backgroundColor: Colors.grey.shade400,
         body: Center(
@@ -43,6 +44,14 @@ class AuthenticationDataScreen extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                  onPressed: () {
+                    authBloc.add(OnAddButtonPressed());
+                  },
+                  child: const Text(
+                    'ADD',
+                  ))
             ],
           ),
         ),

@@ -14,5 +14,10 @@ class AuthenticationBloc
     on<OnChangePassword>((event, emit) {
       emit(state.copyWith(password: event.password));
     });
+    on<OnAddButtonPressed>((event, emit) {
+
+      emit(state.copyWith(name: state.name + state.email));
+
+    });
   }
 }
