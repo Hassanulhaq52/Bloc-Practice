@@ -1,4 +1,6 @@
+import 'package:bloc_practice/authentication_bloc/authentication_bloc.dart';
 import 'package:bloc_practice/counter_bloc/counter_bloc.dart';
+import 'package:bloc_practice/screens/authentication_screen.dart';
 import 'package:bloc_practice/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,11 +14,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CounterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AuthenticationBloc(),
+        ),
+      ],
       child: MaterialApp(
-        title: 'Bloc Practice',
-        home: HomeScreen(),
+        title: 'Practice Bloc',
+        home: AuthenticationScreen(),
       ),
     );
   }

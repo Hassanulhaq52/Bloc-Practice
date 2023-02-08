@@ -1,7 +1,9 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:math';
 
-part 'counter_state.dart';
+import 'package:bloc/bloc.dart';
+
 part 'counter_events.dart';
+part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState.initial()) {
@@ -21,11 +23,11 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       emit(state.copyWith(count: event.num1 / event.num2));
     });
 
-    on<OnChangeText1>((event, emit) {
+    on<OnChangeNum1>((event, emit) {
       emit(state.copyWith(num1: event.num1));
     });
 
-    on<OnChangeText2>((event, emit) {
+    on<OnChangeNum2>((event, emit) {
       emit(state.copyWith(num2: event.num2));
     });
   }
