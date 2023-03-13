@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  AuthenticationScreen({Key? key}) : super(key: key);
+  const AuthenticationScreen({Key? key}) : super(key: key);
   //
   // TextEditingController nameInput = TextEditingController();
   // TextEditingController emailInput = TextEditingController();

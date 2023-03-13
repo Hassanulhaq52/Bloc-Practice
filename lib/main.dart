@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Practice Bloc',
-        home: AuthenticationScreen(),
+        home: HomeScreen(),
       ),
     );
   }
